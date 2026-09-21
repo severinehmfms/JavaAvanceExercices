@@ -61,6 +61,9 @@ public class Exercice1 {
 		scanner.close();
 	}
 	
+	/**
+	 * Méthode qui va afficher tous les articles
+	 */
 	public static void listArticles() {
 		ArticleDao ad = new ArticleDao();
 		ArrayList<Article> articles = (ArrayList<Article>) ad.readAll();
@@ -69,6 +72,9 @@ public class Exercice1 {
 		}
 	}
 	
+	/**
+	 * Méthode qui va afficher un article par son id
+	 */
 	public static void showArticle() {
 		ArticleDao ad = new ArticleDao();
 		int idArticle = Functions.input_int(scanner, "Entrez le numéro de l'article à afficher");
@@ -76,6 +82,9 @@ public class Exercice1 {
 		System.out.println(article);
 	}	
 	
+	/**
+	 * Méthode qui va ajouter un article pour l'instant en dur
+	 */
 	public static void addArticle() {
 		System.out.println("Ajout d'un article");
 		Article article = new Article("Lunettes de soleil","Surfrider",20);
@@ -84,11 +93,23 @@ public class Exercice1 {
 		
 	}
 	
+	/**
+	 * Méthode qui va modifier un article pour l'instant en dur
+	 */
 	public static void updateArticle() {
 		System.out.println("Modification d'un article");
+		ArticleDao ad = new ArticleDao();
+		//int idArticle = Functions.input_int(scanner, "Entrez le numéro de l'article à modifier");
+		Article article = new Article("Téléphone trop bien", "Pixel", 200);
+		article.setIdentifiant(13);
+		ad.update(article);	
+		System.out.println(article);
 		
 	}
 	
+	/**
+	 * TODO Méthode qui va supprimer un article
+	 */
 	public static void deleteArticle() {
 		System.out.println("Suppression d'un article");
 		
