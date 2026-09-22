@@ -102,10 +102,14 @@ public class ArticleDao implements Dao<Article> {
 		return obj;
 	}
 
+	/**
+	 * Méthode qui modifie un article
+	 */
 	@Override
 	public boolean update(Article obj) {
 		try (Connection connection = DatabaseConnection.getConnection()) {
 			String str = "UPDATE T_Articles SET Description=?, Brand=?, UnitaryPrice=? WHERE IdArticle=?";
+			
 			try (PreparedStatement ps = connection.prepareStatement(str)){
 				ps.setString(1, obj.getDescription());
 				ps.setString(2, obj.getBrand());
@@ -125,7 +129,7 @@ public class ArticleDao implements Dao<Article> {
 				e.printStackTrace();
 			}
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
         	System.out.println("ERREUR lors de la connexion à la base de données");
             e.printStackTrace();
         }
@@ -137,20 +141,24 @@ public class ArticleDao implements Dao<Article> {
 
 	    String strSql = "DELETE FROM T_Articles WHERE IdArticle=?";
 
-	    try (Connection connection = DatabaseConnection.getConnection();
-	         PreparedStatement ps = connection.prepareStatement(strSql)) {
+	    try (Connection connection = DatabaseConnection.getConnection()){
+	    		
+	    	try(PreparedStatement ps = connection.prepareStatement(strSql)){
 
-	        ps.setInt(1, idArticle);
+	        	ps.setInt(1, idArticle);
 
-	        return ps.executeUpdate() > 0;
-
+	        	// ps.executeUpdate() = nombre de lignes affectées par la requête
+	        	return ps.executeUpdate() > 0;
+	        	
+		    }catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+	        	
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	        return false;
 	    }
-	}
-	
-
-	
+	}	
 	
 }
