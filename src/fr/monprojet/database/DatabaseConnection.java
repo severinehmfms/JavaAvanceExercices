@@ -21,7 +21,7 @@ public class DatabaseConnection {
         String url = "jdbc:mariadb://localhost:3306/shop";
         String login = "root";
         String password = "";
-
+        
         return DriverManager.getConnection(url, login, password);
 	}
 }
