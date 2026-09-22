@@ -83,25 +83,37 @@ public class Exercice1 {
 	}	
 	
 	/**
-	 * Méthode qui va ajouter un article pour l'instant en dur
+	 * Méthode pour ajouter un article
 	 */
 	public static void addArticle() {
 		System.out.println("Ajout d'un article");
-		Article article = new Article("Lunettes de soleil","Surfrider",20);
+		
+		String description = Functions.input_string(scanner, "Entrez la description de l'article");
+		String brand = Functions.input_string(scanner, "Entrez la marque de l'article");
+		double price = Functions.input_double(scanner, "Entrez le prix de l'article");
+		
+		Article article = new Article(description,brand,price);		
 		ArticleDao ad = new ArticleDao();
 		ad.create(article);
-		
+		System.out.println(article);
 	}
 	
 	/**
-	 * Méthode qui va modifier un article pour l'instant en dur
+	 * Méthode pour modifier un article
 	 */
 	public static void updateArticle() {
 		System.out.println("Modification d'un article");
 		ArticleDao ad = new ArticleDao();
-		//int idArticle = Functions.input_int(scanner, "Entrez le numéro de l'article à modifier");
-		Article article = new Article("Téléphone trop bien", "Pixel", 200);
-		article.setIdentifiant(13);
+		int idArticle = Functions.input_int(scanner, "Entrez le numéro de l'article à modifier");
+		Article article = ad.readById(idArticle);	
+		System.out.println(article);
+		
+		String description = Functions.input_string(scanner, "Entrez la nouvelle description de l'article");
+		String brand = Functions.input_string(scanner, "Entrez la nouvelle marque de l'article");
+		double price = Functions.input_double(scanner, "Entrez le nouveau prix de l'article");
+		article.setDescription(description);
+		article.setBrand(brand);
+		article.setPrice(price);
 		ad.update(article);	
 		System.out.println(article);
 		
@@ -113,6 +125,14 @@ public class Exercice1 {
 	public static void deleteArticle() {
 		System.out.println("Suppression d'un article");
 		
+		ArticleDao ad = new ArticleDao();
+		int idArticle = Functions.input_int(scanner, "Entrez le numéro de l'article à modifier");
+		Article article = ad.readById(idArticle);	
+		System.out.println(article);
+		
+		if (Functions.input_yes_no(scanner, "Etes vous sur de vouloir supprimer cet article ?")) {
+			ad.delete(idArticle);	
+		}
 	}
 		
 }
