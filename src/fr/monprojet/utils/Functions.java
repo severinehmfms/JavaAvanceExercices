@@ -82,6 +82,16 @@ public class Functions {
 	}
 	
 	/**
+	 * Surcharge de la méthode input_double pour ne pas rentrer de valeur minimum et maximum
+	 * Double.MIN_VALUE représente la plus petite valeur positive strictement supérieure à zéro qu’un double peut stocker
+	 * @param prompt
+	 * @return
+	 */
+	public static double input_double(Scanner scanner, String prompt) {
+	    return input_double(scanner, prompt, Double.MIN_VALUE, Double.MAX_VALUE);
+	}
+	
+	/**
 	 * Fonction générique pour faire saisir à l'utilisateur un int entre min_val et max_val
 	 * @param prompt
 	 * @param min_val
