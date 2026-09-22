@@ -83,10 +83,10 @@ public class Exercice1 {
 	}	
 	
 	/**
-	 * Méthode pour ajouter un article
+	 * Méthode pour créer un article
 	 */
 	public static void addArticle() {
-		System.out.println("Ajout d'un article");
+		System.out.println("Création d'un article");
 		
 		String description = Functions.input_string(scanner, "Entrez la description de l'article");
 		String brand = Functions.input_string(scanner, "Entrez la marque de l'article");
@@ -94,8 +94,13 @@ public class Exercice1 {
 		
 		Article article = new Article(description,brand,price);		
 		ArticleDao ad = new ArticleDao();
-		ad.create(article);
-		System.out.println(article);
+		article = ad.create(article);
+		if (article == null) {
+			System.out.println("ERREUR lors de la création de l'article");
+		}else {
+			System.out.println("Création de cet article bien effectuée : ");
+			System.out.println(article);
+		}		
 	}
 	
 	/**
@@ -114,13 +119,15 @@ public class Exercice1 {
 		article.setDescription(description);
 		article.setBrand(brand);
 		article.setPrice(price);
-		ad.update(article);	
-		System.out.println(article);
-		
+		if (ad.update(article)) {
+			System.out.println("Modification bien effectuée");
+		}else {
+			System.out.println("ERREUR lors de la modification de cet article");
+		}		
 	}
 	
 	/**
-	 * TODO Méthode qui va supprimer un article
+	 * Méthode pour supprimer un article
 	 */
 	public static void deleteArticle() {
 		System.out.println("Suppression d'un article");
@@ -131,7 +138,13 @@ public class Exercice1 {
 		System.out.println(article);
 		
 		if (Functions.input_yes_no(scanner, "Etes vous sur de vouloir supprimer cet article ?")) {
-			ad.delete(idArticle);	
+			if (ad.delete(idArticle)) {
+				System.out.println("Suppression bien effectuée");
+			}else {
+				System.out.println("ERREUR lors de la suppression de cet article");
+			}
+		}else {
+			System.out.println("Annulation de la suppression");
 		}
 	}
 		
