@@ -13,6 +13,9 @@ import fr.monprojet.database.DatabaseConnection;
 
 public class ArticleDao implements Dao<Article> {
 
+	/**
+	 * Méthode readById pour retourner l'objet Article correspondant à l'id
+	 */
 	@Override
 	public Article readById(int idArticle) {
 		Article article = null;
@@ -29,11 +32,6 @@ public class ArticleDao implements Dao<Article> {
 	        			String rsMarque = resultSet.getString("Brand");
 	        			double rsPrixUnitaire = resultSet.getDouble("UnitaryPrice");
 	        			
-	        			/*int rsIdUser = resultSet.getInt(1); 
-	        			String rsDescription = resultSet.getString(2);
-	        			String rsMarque = resultSet.getString(3);
-	        			double rsPrixUnitaire = resultSet.getDouble(4);*/
-	        			
 	        			article = new Article(rsIdUser, rsDescription, rsMarque, rsPrixUnitaire);
 	                } else {
 	                    System.out.println("Aucun résultat trouvé.");
@@ -46,6 +44,9 @@ public class ArticleDao implements Dao<Article> {
 		return article;
 	}
 
+	/**
+	 * Méthode qui renvoie la liste de tous les articles
+	 */
 	@Override
 	public List<Article> readAll() {
 		ArrayList<Article> articles = new ArrayList<Article>();
@@ -68,10 +69,12 @@ public class ArticleDao implements Dao<Article> {
 		return articles;
 	}
 
+	/**
+	 * Méthode pour créer un article dans la base
+	 */
 	@Override
 	public Article create(Article obj) {
 		try (Connection connection = DatabaseConnection.getConnection()) {
-            // requête SQL ici
 			String str = "INSERT INTO T_Articles (Description, Brand, UnitaryPrice) VALUES (?,?,?)";
 			try (PreparedStatement ps = connection.prepareStatement(str, Statement.RETURN_GENERATED_KEYS)){
 				ps.setString(1, obj.getDescription());
@@ -103,7 +106,7 @@ public class ArticleDao implements Dao<Article> {
 	}
 
 	/**
-	 * Méthode qui modifie un article
+	 * Méthode qui modifie un article dans la base
 	 */
 	@Override
 	public boolean update(Article obj) {
@@ -136,6 +139,9 @@ public class ArticleDao implements Dao<Article> {
 		return false;
 	}
 
+	/**
+	 * Méthode qui supprime un article de la base
+	 */
 	@Override
 	public boolean delete(int idArticle) {
 
