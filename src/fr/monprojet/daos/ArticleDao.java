@@ -72,7 +72,7 @@ public class ArticleDao implements Dao<Article> {
 	public Article create(Article obj) {
 		try (Connection connection = DatabaseConnection.getConnection()) {
             // requête SQL ici
-			String str = "INSERT INTO T_Articles (Description, Brand, UnitaryPrice) VALUES (?,?,?);";
+			String str = "INSERT INTO T_Articles (Description, Brand, UnitaryPrice) VALUES (?,?,?)";
 			try (PreparedStatement ps = connection.prepareStatement(str, Statement.RETURN_GENERATED_KEYS)){
 				ps.setString(1, obj.getDescription());
 				ps.setString(2, obj.getBrand());
@@ -105,35 +105,51 @@ public class ArticleDao implements Dao<Article> {
 	@Override
 	public boolean update(Article obj) {
 		try (Connection connection = DatabaseConnection.getConnection()) {
-            // requête SQL ici
-			//UPDATE T_Articles SET Description=?, Brand=?, UnitaryPrice=? WHERE IdArticle=?
-			String str = "UPDATE T_Articles SET Description=?, Brand=?, UnitaryPrice=? WHERE IdArticle=?;";
+			String str = "UPDATE T_Articles SET Description=?, Brand=?, UnitaryPrice=? WHERE IdArticle=?";
 			try (PreparedStatement ps = connection.prepareStatement(str)){
 				ps.setString(1, obj.getDescription());
 				ps.setString(2, obj.getBrand());
 				ps.setDouble(3, obj.getPrice());
 				ps.setInt(4, obj.getIdentifiant());
-				if( ps.executeUpdate() == 0)
-					throw new SQLException("Échec de la mise à jour, aucune ligne affectée.");
-				else
-					//Si tout ok lors de la modification
-					return true;
+				
+				// On récupère le nombre de lignes affectées par la requête
+				int nbLignes = ps.executeUpdate(); 
+				
+				if (nbLignes == 0) { 
+					throw new SQLException("Échec de la mise à jour, aucune ligne affectée."); 
+				}
+				
+				return true;
 	            
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
+        	System.out.println("ERREUR lors de la connexion à la base de données");
             e.printStackTrace();
         }
 		return false;
 	}
 
 	@Override
-	public boolean delete(int id) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean delete(int idArticle) {
+
+	    String strSql = "DELETE FROM T_Articles WHERE IdArticle=?";
+
+	    try (Connection connection = DatabaseConnection.getConnection();
+	         PreparedStatement ps = connection.prepareStatement(strSql)) {
+
+	        ps.setInt(1, idArticle);
+
+	        return ps.executeUpdate() > 0;
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return false;
+	    }
 	}
+	
 
 	
 	
