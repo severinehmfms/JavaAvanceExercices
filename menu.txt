@@ -1,17 +1,24 @@
-***************Résumé de la commande N°1***************
-SALADE
-BOEUF
-RIZ
-TIRAMISU
-***************Résumé de la commande N°2***************
-SOUPE
-BOEUF
-PATES
-SODA
-MOUSSE_AU_CHOCOLAT
-***************Résumé de la commande N°3***************
-QUICHE
-POISSON
-FRITES
-VIN
+***************Résumé du menu N°1***************
+Salade
+Boeuf
+Frites
+Soda
+Tiramisu
+
+
+***************Résumé du menu N°2***************
+Quiche
+Poulet
+Légumes
+Eau plate
+Mousse au chocolat
+
+
+***************Résumé du menu N°3***************
+Soupe
+Vegan
+Pâtes
+Tiramisu
+
+
 
