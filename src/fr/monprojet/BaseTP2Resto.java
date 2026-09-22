@@ -59,14 +59,14 @@ public class BaseTP2Resto{
 	public static void main(String[] args){
 		
 		//TODO Penser à décommenter pour que le programme fonctionne complétement		
-		//userCommand();
+		int[][] commandes = userCommand();
 		
 		//Pour test : 
-		int[][] commandes = new int[][] {
+		/*int[][] commandes = new int[][] {
 		    {0, 1, 2, 2, 3},
 		    {2, 0, 1, 0, 2},
 		    {1, 4, 1, 4, 1}
-		};
+		};*/
 		save_menu_file(commandes);
 		
 		//On referme le scanner

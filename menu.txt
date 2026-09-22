@@ -1,17 +1,17 @@
 ***************Résumé de la commande N°1***************
 SALADE
 BOEUF
-FRITES
-SODA
-***************Résumé de la commande N°2***************
-QUICHE
-POULET
-PATES
-EAU_PLATE
+RIZ
 TIRAMISU
-***************Résumé de la commande N°3***************
+***************Résumé de la commande N°2***************
 SOUPE
-VEGAN
+BOEUF
 PATES
+SODA
 MOUSSE_AU_CHOCOLAT
+***************Résumé de la commande N°3***************
+QUICHE
+POISSON
+FRITES
+VIN
 
