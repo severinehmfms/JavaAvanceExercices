@@ -23,7 +23,7 @@ public class ArticleDao implements Dao<Article> {
 			String strSql = "SELECT * FROM T_Articles WHERE IdArticle = ?";
 			try (PreparedStatement ps = connection.prepareStatement(strSql)){
 				ps.setInt(1, idArticle);
-				System.out.println(strSql);
+				//System.out.println(strSql);
 	        	try(ResultSet resultSet = ps.executeQuery()){
 	        		
 	        		if (resultSet.next()) { // On lit la première (et unique) ligne
