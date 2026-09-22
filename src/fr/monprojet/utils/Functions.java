@@ -1,6 +1,9 @@
 package fr.monprojet.utils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
@@ -148,6 +151,45 @@ public class Functions {
 	    }
         return date;
 	}
+	
+	//Fonction input_date modifiée pour l'exercice 2.2 Java avancée
+	public static Date input_date_fr_exceptions(Scanner scanner, String prompt) throws Exception{
+
+	    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+	    
+	    //setLenient à false dit à SimpleDateFormat de ne pas être tolérant
+	    formatter.setLenient(false);
+
+	    Date date = null;
+	    boolean isValid = false;
+
+	    while (!isValid) {
+
+	        try {
+
+	            System.out.println(prompt);
+
+	            String input_user = scanner.nextLine().trim();
+
+	            if (!input_user.matches("\\d{2}/\\d{2}/\\d{4}")) {
+	                throw new ParseException("La date doit être au format dd/MM/yyyy", 0);
+	            }
+
+	            date = formatter.parse(input_user);
+	            isValid = true;
+
+	        } catch (ParseException e) {
+	        	e.printStackTrace();
+	            System.out.println(
+	                "ERREUR - La saisie doit être une date valide au format dd/MM/yyyy."
+	            );
+	        }
+	    }
+
+	    return date;
+	}	
+
+	
 	
 	/** 
 	 * Fonction qui permet de demander une saisie à l'utilisateur
