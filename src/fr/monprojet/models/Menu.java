@@ -57,6 +57,30 @@ public class Menu {
 	public void setDessert(Aliment dessert) {
 		this.dessert = dessert;
 	}
+	
+	/**
+	 * Fonction qui calcule le montant total de ce menu
+	 * @return
+	 */
+	public double getTotalMenu() {
+		double total = 0;
+		if (this.entree != null){
+			total += this.entree.getPrice();
+		}
+		if (this.plat != null){
+			total += this.plat.getPrice();
+		}
+		if (this.accompagnement != null){
+			total += this.accompagnement.getPrice();
+		}
+		if (this.boisson != null){
+			total += this.boisson.getPrice();
+		}
+		if (this.dessert != null){
+			total += this.dessert.getPrice();
+		}
+		return total;
+	}
     	
 	/**
 	 * Méthode qui va afficher le résumé de la commande pour un menu de l'utilisateur
@@ -71,8 +95,7 @@ public class Menu {
 		if (this.getPlat() != null)				resume += " - " + this.getPlat().getLabel() + " ";
 		if (this.getAccompagnement() != null)	resume += " - " + this.getAccompagnement().getLabel() + " ";
 		if (this.getBoisson() != null)			resume += " - " + this.getBoisson().getLabel() + " ";
-		if (this.getDessert() != null)			resume += " - " + this.getDessert().getLabel() + " ";
-		
+		if (this.getDessert() != null)			resume += " - " + this.getDessert().getLabel() + " ";		
 		//Et pour finir on rajoute le crochet fermé pour un joli affichage
 		resume += "]";
 		System.out.println(resume);
