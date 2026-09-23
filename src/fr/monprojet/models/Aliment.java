@@ -14,7 +14,7 @@ public class Aliment {
 	}
 	
 	public String toString() {
-		return this.numChoice + " - " + this.label + " - " + this.price;
+		return this.numChoice + " - " + this.label + " - Prix : " + this.price + "€";
 	}
 
 	public Aliment(TypeAliment type, int numChoice, String label, double price) {
@@ -61,7 +61,7 @@ public class Aliment {
 	 */
 	public static List<Aliment> initAliments() {
 		
-		List<Aliment> aliments = new ArrayList();
+		ArrayList<Aliment> aliments = new ArrayList();
 		//Entrées SALADE, SOUPE, QUICHE
         aliments.add(new Aliment(Aliment.TypeAliment.ENTREE, 1, "Salade", 5.50));
         aliments.add(new Aliment(Aliment.TypeAliment.ENTREE, 2, "Soupe", 4.50));
