@@ -22,8 +22,24 @@ public class Commande {
 		this.menus = menus;
 	}
 	
+	/**
+	 * Fonction qui ajoute un menu à la commande
+	 * @param menu
+	 */
 	public void addToMenus(Menu menu) {
 		this.menus.add(menu);
+	}
+	
+	/**
+	 * Fonction qui calcule le total de la commande
+	 * @return
+	 */
+	public double getTotalCommande() {
+		double total=0;
+		for (Menu menu : this.getMenus()) {
+			total += menu.getTotalMenu();
+		}
+		return total;		
 	}
 
 	
@@ -39,13 +55,16 @@ public class Commande {
 		for (int i = 0; i < menus.size(); i++) {
 			resume += "***************Résumé du menu N°"+(i+1)+"***************\n";
 			Menu menu = menus.get(i);
-			if (menu.getEntree() != null)			resume += menu.getEntree().getLabel() + "\n";
-			if (menu.getPlat() != null)				resume += menu.getPlat().getLabel() + "\n";
-			if (menu.getAccompagnement() != null)	resume += menu.getAccompagnement().getLabel() + "\n";
-			if (menu.getBoisson() != null)			resume += menu.getBoisson().getLabel() + "\n";
-			if (menu.getDessert() != null)			resume += menu.getDessert().getLabel() + "\n";
+			if (menu.getEntree() != null)			resume += menu.getEntree().getLabel() + " - " + menu.getEntree().getPrice() + "€ \n";
+			if (menu.getPlat() != null)				resume += menu.getPlat().getLabel() + " - " + menu.getPlat().getPrice() + "\n";
+			if (menu.getAccompagnement() != null)	resume += menu.getAccompagnement().getLabel() + " - " + menu.getAccompagnement().getPrice() + "\n";
+			if (menu.getBoisson() != null)			resume += menu.getBoisson().getLabel() + " - " + menu.getBoisson().getPrice() + "\n";
+			if (menu.getDessert() != null)			resume += menu.getDessert().getLabel() + " - " + menu.getDessert().getPrice() + "\n";
+			resume += "Total du menu : " + menu.getTotalMenu();
 			resume += "\n\n";
 		}
+		
+		resume += "Total de la commande : " + this.getTotalCommande();
 		System.out.println(resume);
 		
 		//Si on a choisi de l'enregistrer aussi dans un fichier
