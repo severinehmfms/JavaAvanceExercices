@@ -1,24 +1,15 @@
 ***************Résumé du menu N°1***************
-Salade
-Boeuf
-Frites
-Soda
-Tiramisu
-
+Salade - 5.5€ 
+Soda - 2.0
+Mousse au chocolat - 3.5
+Total du menu : 11.0
 
 ***************Résumé du menu N°2***************
-Quiche
-Poulet
-Légumes
-Eau plate
-Mousse au chocolat
+Quiche - 6.5€ 
+Boeuf - 6.5
+Frites - 2.0
+Eau plate - 2.5
+Mousse au chocolat - 3.5
+Total du menu : 21.0
 
-
-***************Résumé du menu N°3***************
-Soupe
-Vegan
-Pâtes
-Tiramisu
-
-
-
+Total de la commande : 32.0
